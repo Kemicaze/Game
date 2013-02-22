@@ -125,8 +125,8 @@ public class NoiseMap {
 
 	public static void main(String[] args) {
 		for (int j = 0; j < 10; j++) {
-			int h = 128;
-			int w = 128;
+			int h = 512;
+			int w = 512;
 
 			byte[] map = NoiseMap.getMap(w, h)[0];
 
