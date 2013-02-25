@@ -8,5 +8,5 @@ ticks: 60/sec
 http://www.twitch.tv/archive/archive_popout?id=302823358
 3hr08min26sec--- DONE!!
 http://www.twitch.tv/archive/archive_popout?id=302867302
-5hr07min50sec
+6hr17min40sec
 http://www.twitch.tv/notch/b/302969182

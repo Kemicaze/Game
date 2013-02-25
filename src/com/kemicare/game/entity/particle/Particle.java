@@ -10,8 +10,4 @@ public class Particle extends Entity {
 
 	public void tick() {
 	}
-
-	public boolean blocks(Mob mob) {
-		return false;
-	}
 }

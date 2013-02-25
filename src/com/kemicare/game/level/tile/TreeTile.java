@@ -1,10 +1,13 @@
 package com.kemicare.game.level.tile;
 
 import com.kemicare.game.entity.Entity;
+import com.kemicare.game.entity.ItemEntity;
 import com.kemicare.game.entity.Mob;
 import com.kemicare.game.entity.particle.TextParticle;
 import com.kemicare.game.gfx.Color;
 import com.kemicare.game.gfx.Screen;
+import com.kemicare.game.item.Resource;
+import com.kemicare.game.item.ResourceItem;
 import com.kemicare.game.level.Level;
 
 public class TreeTile extends Tile {
@@ -54,7 +57,10 @@ public class TreeTile extends Tile {
 	public void hurt(Level level, int x, int y, Mob source, int dmg, int attackDir) {
 		int damage = level.getData(x, y) + dmg;
 		level.add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, Color.get(-1, 500, 500, 500)));
-		if (damage > 32) {
+		if (damage > 0) {
+			for (int i = 0; i < 4; i++) {
+				level.add(new ItemEntity(new ResourceItem(Resource.wood), x * 16 + random.nextInt(10) + 3, y * 16 + random.nextInt(10) + 3));
+			}
 			level.setTile(x, y, Tile.grass, 0);
 		} else {
 			level.setData(x, y, damage);

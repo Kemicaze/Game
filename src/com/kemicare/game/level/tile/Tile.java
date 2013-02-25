@@ -1,11 +1,15 @@
 package com.kemicare.game.level.tile;
 
+import java.util.Random;
+
 import com.kemicare.game.entity.Entity;
 import com.kemicare.game.entity.Mob;
 import com.kemicare.game.gfx.Screen;
 import com.kemicare.game.level.Level;
 
 public class Tile {
+	protected Random random = new Random();
+	
 	public static Tile[] tiles = new Tile[256];
 	public static Tile grass = new GrassTile(0);
 	public static Tile rock = new RockTile(1);
