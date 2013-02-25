@@ -1,6 +1,7 @@
 package com.kemicare.game.level.tile;
 
 import com.kemicare.game.entity.Entity;
+import com.kemicare.game.entity.Mob;
 import com.kemicare.game.gfx.Screen;
 import com.kemicare.game.level.Level;
 
@@ -10,6 +11,7 @@ public class Tile {
 	public static Tile rock = new RockTile(1);
 	public static Tile water = new WaterTile(2);
 	public static Tile flower = new FlowerTile(3);
+	public static Tile tree = new TreeTile(4);
 	
 	public final byte id;
 	
@@ -23,5 +25,8 @@ public class Tile {
 	
 	public boolean mayPass(Level level, int x, int y, Entity e){
 		return true;
+	}
+
+	public void hurt(Level level, int x, int y, Mob source, int dmg, int attackDir) {
 	}
 } 

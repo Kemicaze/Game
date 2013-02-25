@@ -48,20 +48,39 @@ public class Player extends Mob {
 		attackDir = dir;
 		attackTime = 5;
 		if (dir == 0) {
-			hurt(level.getEntities(x - 8, y + 4, x + 8, y + 12));
+			hurt(x - 8, y + 4, x + 8, y + 12);
 		}
 		if (dir == 1) {
-			hurt(level.getEntities(x - 8, y - 12, x + 8, y - 4));
+			hurt(x - 8, y - 12, x + 8, y - 4);
 		}
 		if (dir == 3) {
-			hurt(level.getEntities(x + 4, y - 8, x + 12, y + 8));
+			hurt(x + 4, y - 8, x + 12, y + 8);
 		}
 		if (dir == 2) {
-			hurt(level.getEntities(x - 12, y - 8, x - 4, y + 8));
+			hurt(x - 12, y - 8, x - 4, y + 8);
+		}
+
+		int yo = -2;
+		int xt = x >> 4;
+		int yt = (y+yo) >> 4;
+		int r = 12;
+		if (attackDir == 0)
+			yt = (y + r+yo) >> 4;
+		if (attackDir == 1)
+			yt = (y - r+yo) >> 4;
+		if (attackDir == 2)
+			xt = (x - r) >> 4;
+		if (attackDir == 3)
+			xt = (x + r) >> 4;
+
+		if (xt >= 0 && yt >= 0 && xt < level.w && yt < level.h) {
+			level.getTile(xt, yt).hurt(level, xt, yt, this, random.nextInt(4) + 1, attackDir);
 		}
 	}
 
-	private void hurt(List<Entity> entities) {
+	private void hurt(int x0, int y0, int x1, int y1) {
+
+		List<Entity> entities = level.getEntities(x0, y0, x1, y1);
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			if (e != this)

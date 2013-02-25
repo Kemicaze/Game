@@ -1,6 +1,8 @@
 package com.kemicare.game.level.tile;
 
 import com.kemicare.game.entity.Entity;
+import com.kemicare.game.entity.Mob;
+import com.kemicare.game.entity.particle.TextParticle;
 import com.kemicare.game.gfx.Color;
 import com.kemicare.game.gfx.Screen;
 import com.kemicare.game.level.Level;
@@ -60,5 +62,15 @@ public class RockTile extends Tile {
 
 	public boolean mayPass(Level level, int x, int y, Entity e) {
 		return false;
+	}
+
+	public void hurt(Level level, int x, int y, Mob source, int dmg, int attackDir) {
+		int damage = level.getData(x, y) + dmg;
+		level.add(new TextParticle("" + dmg, x * 16 + 8, y * 16 + 8, Color.get(-1, 500, 500, 500)));
+		if (damage > 32) {
+			level.setTile(x, y, Tile.grass, 0);
+		} else {
+			level.setData(x, y, damage);
+		}
 	}
 }

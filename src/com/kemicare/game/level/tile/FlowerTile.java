@@ -1,5 +1,6 @@
 package com.kemicare.game.level.tile;
 
+import com.kemicare.game.entity.Mob;
 import com.kemicare.game.gfx.Color;
 import com.kemicare.game.gfx.Screen;
 import com.kemicare.game.level.Level;
@@ -12,7 +13,7 @@ public class FlowerTile extends GrassTile {
 
 	public void render(Screen screen, Level level, int x, int y) {
 		super.render(screen, level, x, y);
-		
+
 		int data = level.getData(x, y);
 		int color = data % 16;
 		int shape = data / 16;
@@ -35,5 +36,9 @@ public class FlowerTile extends GrassTile {
 			screen.render(x * 16 + 0, y * 16 + 8, 1 + 1 * 32, flowerCol, 0);
 		if (shape == 3)
 			screen.render(x * 16 + 8, y * 16 + 8, 1 + 1 * 32, flowerCol, 0);
+	}
+
+	public void hurt(Level level, int x, int y, Mob source, int dmg, int attackDir) {
+		level.setTile(x, y, Tile.grass, 0);
 	}
 }

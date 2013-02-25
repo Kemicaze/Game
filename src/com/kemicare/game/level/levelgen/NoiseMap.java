@@ -96,10 +96,24 @@ public class NoiseMap {
 
 				if (val < 0) {
 					map[i] = Tile.water.id;
-				} else if (val > 2) {
+				} else if (val > 1) {
 					map[i] = Tile.rock.id;
 				} else {
 					map[i] = Tile.grass.id;
+				}
+			}
+		}
+		
+		for (int i = 0; i < w * h / 400; i++) {
+			int x = random.nextInt(w);
+			int y = random.nextInt(h);
+			for (int j = 0; j < 200; j++) {
+				int xx = x + random.nextInt(15) - random.nextInt(15);
+				int yy = y + random.nextInt(15) - random.nextInt(15);
+				if (xx >= 0 && yy >= 0 && xx < w && yy < h) {
+					if (map[xx + yy * w] == Tile.grass.id) {
+						map[xx + yy * w] = Tile.tree.id;
+					}
 				}
 			}
 		}
@@ -109,8 +123,8 @@ public class NoiseMap {
 			int y = random.nextInt(h);
 			int col = random.nextInt(4);
 			for (int j = 0; j < 30; j++) {
-				int xx = x + random.nextInt(6) - random.nextInt(6);
-				int yy = y + random.nextInt(6) - random.nextInt(6);
+				int xx = x + random.nextInt(5) - random.nextInt(5);
+				int yy = y + random.nextInt(5) - random.nextInt(5);
 				if (xx >= 0 && yy >= 0 && xx < w && yy < h) {
 					if (map[xx + yy * w] == Tile.grass.id) {
 						map[xx + yy * w] = Tile.flower.id;
@@ -119,7 +133,6 @@ public class NoiseMap {
 				}
 			}
 		}
-
 		return new byte[][] { map, data };
 	}
 
